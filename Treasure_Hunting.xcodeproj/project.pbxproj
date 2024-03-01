@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		F33453442B9248AA00EA4F6F /* Treasure_HuntingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453432B9248AA00EA4F6F /* Treasure_HuntingApp.swift */; };
-		F33453462B9248AA00EA4F6F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453452B9248AA00EA4F6F /* ContentView.swift */; };
 		F33453482B9248AC00EA4F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33453472B9248AC00EA4F6F /* Assets.xcassets */; };
 		F334534B2B9248AC00EA4F6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F334534A2B9248AC00EA4F6F /* Preview Assets.xcassets */; };
 		F33453552B9248AD00EA4F6F /* Treasure_HuntingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453542B9248AD00EA4F6F /* Treasure_HuntingTests.swift */; };
 		F334535F2B9248AD00EA4F6F /* Treasure_HuntingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F334535E2B9248AD00EA4F6F /* Treasure_HuntingUITests.swift */; };
 		F33453612B9248AD00EA4F6F /* Treasure_HuntingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453602B9248AD00EA4F6F /* Treasure_HuntingUITestsLaunchTests.swift */; };
+		F33453722B924A0D00EA4F6F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453712B924A0D00EA4F6F /* MainView.swift */; };
+		F33453742B924A2600EA4F6F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453732B924A2600EA4F6F /* SettingsView.swift */; };
+		F33453762B924A5400EA4F6F /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453752B924A5400EA4F6F /* GameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,6 @@
 /* Begin PBXFileReference section */
 		F33453402B9248AA00EA4F6F /* Treasure_Hunting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Treasure_Hunting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33453432B9248AA00EA4F6F /* Treasure_HuntingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treasure_HuntingApp.swift; sourceTree = "<group>"; };
-		F33453452B9248AA00EA4F6F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F33453472B9248AC00EA4F6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F334534A2B9248AC00EA4F6F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F33453502B9248AD00EA4F6F /* Treasure_HuntingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Treasure_HuntingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +45,9 @@
 		F334535A2B9248AD00EA4F6F /* Treasure_HuntingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Treasure_HuntingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F334535E2B9248AD00EA4F6F /* Treasure_HuntingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treasure_HuntingUITests.swift; sourceTree = "<group>"; };
 		F33453602B9248AD00EA4F6F /* Treasure_HuntingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treasure_HuntingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F33453712B924A0D00EA4F6F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F33453732B924A2600EA4F6F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F33453752B924A5400EA4F6F /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				F33453432B9248AA00EA4F6F /* Treasure_HuntingApp.swift */,
-				F33453452B9248AA00EA4F6F /* ContentView.swift */,
+				F33453712B924A0D00EA4F6F /* MainView.swift */,
+				F33453732B924A2600EA4F6F /* SettingsView.swift */,
+				F33453752B924A5400EA4F6F /* GameView.swift */,
 				F33453472B9248AC00EA4F6F /* Assets.xcassets */,
 				F33453492B9248AC00EA4F6F /* Preview Content */,
 			);
@@ -257,7 +263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F33453462B9248AA00EA4F6F /* ContentView.swift in Sources */,
+				F33453722B924A0D00EA4F6F /* MainView.swift in Sources */,
+				F33453742B924A2600EA4F6F /* SettingsView.swift in Sources */,
+				F33453762B924A5400EA4F6F /* GameView.swift in Sources */,
 				F33453442B9248AA00EA4F6F /* Treasure_HuntingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

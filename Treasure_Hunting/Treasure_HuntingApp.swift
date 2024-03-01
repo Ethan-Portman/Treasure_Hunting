@@ -11,7 +11,7 @@ import SwiftUI
 struct Treasure_HuntingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
