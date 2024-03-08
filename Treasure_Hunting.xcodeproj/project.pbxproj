@@ -16,6 +16,7 @@
 		F33453722B924A0D00EA4F6F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453712B924A0D00EA4F6F /* MainView.swift */; };
 		F33453742B924A2600EA4F6F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453732B924A2600EA4F6F /* SettingsView.swift */; };
 		F33453762B924A5400EA4F6F /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453752B924A5400EA4F6F /* GameView.swift */; };
+		F33453782B92630F00EA4F6F /* TreasureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453772B92630F00EA4F6F /* TreasureItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		F33453712B924A0D00EA4F6F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F33453732B924A2600EA4F6F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F33453752B924A5400EA4F6F /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		F33453772B92630F00EA4F6F /* TreasureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				F33453432B9248AA00EA4F6F /* Treasure_HuntingApp.swift */,
 				F33453712B924A0D00EA4F6F /* MainView.swift */,
 				F33453732B924A2600EA4F6F /* SettingsView.swift */,
+				F33453772B92630F00EA4F6F /* TreasureItem.swift */,
 				F33453752B924A5400EA4F6F /* GameView.swift */,
 				F33453472B9248AC00EA4F6F /* Assets.xcassets */,
 				F33453492B9248AC00EA4F6F /* Preview Content */,
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33453782B92630F00EA4F6F /* TreasureItem.swift in Sources */,
 				F33453722B924A0D00EA4F6F /* MainView.swift in Sources */,
 				F33453742B924A2600EA4F6F /* SettingsView.swift in Sources */,
 				F33453762B924A5400EA4F6F /* GameView.swift in Sources */,
