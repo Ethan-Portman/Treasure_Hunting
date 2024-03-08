@@ -8,57 +8,6 @@
 import SwiftUI
 import SwiftData
 
-@Observable class Tile {
-    var item: String
-    
-    init(item: String?) {
-        self.item = item ?? ""
-    }
-}
-
-@Observable class Board {
-    let boardSize = 6
-    var tiles: [[Tile]]
-    var itemGroups: [String: [(row: Int, column: Int)]]
-    
-    init() {
-        tiles = [[Tile]]()
-        itemGroups = [String: [(row: Int, column: Int)]]()
-        
-        for _ in 1...boardSize {
-            var tileRow = [Tile]()
-            for _ in 1...boardSize {
-                tileRow.append(Tile(item: nil))
-            }
-            tiles.append(tileRow)
-        }
-    }
-    
-    subscript(row: Int, column: Int) -> String? {
-        get {
-            if (row < 0) || (boardSize <= row) || (column < 0) || (boardSize <= column) {
-                return nil
-            }
-            return tiles[row][column].item
-        }
-        set {
-            if (row < 0) || (boardSize <= row) || (column < 0) || (boardSize <= column) {
-                return
-            }
-            tiles[row][column].item = newValue ?? ""
-            
-            // Add the cell to the item group
-            if let newValue = newValue {
-                if itemGroups[newValue] == nil {
-                    itemGroups[newValue] = [(row, column)]
-                } else {
-                    itemGroups[newValue]?.append((row, column))
-                }
-            }
-        }
-    }
-}
-
 struct GameView: View {
     @Query private var treasureItems: [TreasureItem]
     @Environment(\.modelContext) private var modelContext
@@ -72,7 +21,10 @@ struct GameView: View {
             ForEach(0..<board.boardSize, id: \.self) { row in
                 GridRow {
                     ForEach(0..<board.boardSize, id: \.self) { col in
-                        Text(board[row, col] ?? "")
+                        let itemName = board[row, col]?.lowercased() ?? ""
+                        Image(systemName: systemImageName(for: itemName))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 30, height: 30)
                             .border(Color.black)
                     }
@@ -82,41 +34,51 @@ struct GameView: View {
         .padding()
     }
     
+    private func systemImageName(for itemName: String) -> String {
+        // Map your item names to system image names dynamically
+        let systemImageName = UIImage(systemName: itemName)?.isSymbolImage ?? false ? itemName : "questionmark"
+        return systemImageName
+    }
+    
     private func populateBoard() {
-        clearBoard()
-        print("Starting to populate board")
+        let totalItems = treasureItems.reduce(0) { $0 + $1.count }
+        var successfullyPlacedItems = 0
 
+        while (successfullyPlacedItems != totalItems) {
+            clearBoard()
+            successfullyPlacedItems = placeItemsOnBoard()
+        }
+    }
+    
+    private func placeItemsOnBoard() -> Int {
+        var successfullyPlacedItems = 0
         for treasureItem in treasureItems {
-            var firstEmptyCell: (row: Int, column: Int)? = nil
-
             if let cell = findEmptyCell(board: board) {
-                firstEmptyCell = cell
-                print(treasureItem.title)
                 board[cell.row, cell.column] = treasureItem.title
+                successfullyPlacedItems += 1
                 
-                // Add the first cell to the item group
                 if board.itemGroups[treasureItem.title] == nil {
                     board.itemGroups[treasureItem.title] = [cell]
                 } else {
                     board.itemGroups[treasureItem.title]?.append(cell)
                 }
             }
-
+            
             for _ in 2...treasureItem.count {
                 if let adjacentCell = findAdjacentEmptyCell(board: board, itemGroup: board.itemGroups[treasureItem.title] ?? []) {
                     board[adjacentCell.row, adjacentCell.column] = treasureItem.title
-
+                    successfullyPlacedItems += 1
+                    
                     // Add the adjacent cell to the item group
                     if board.itemGroups[treasureItem.title] == nil {
                         board.itemGroups[treasureItem.title] = [adjacentCell]
                     } else {
                         board.itemGroups[treasureItem.title]?.append(adjacentCell)
                     }
-
-                    firstEmptyCell = adjacentCell
                 }
             }
         }
+        return successfullyPlacedItems
     }
     
     private func findAdjacentEmptyCell(board: Board, itemGroup: [(row: Int, column: Int)]) -> (row: Int, column: Int)? {

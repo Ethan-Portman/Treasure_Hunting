@@ -17,6 +17,8 @@
 		F33453742B924A2600EA4F6F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453732B924A2600EA4F6F /* SettingsView.swift */; };
 		F33453762B924A5400EA4F6F /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453752B924A5400EA4F6F /* GameView.swift */; };
 		F33453782B92630F00EA4F6F /* TreasureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453772B92630F00EA4F6F /* TreasureItem.swift */; };
+		F3840B2F2B9BBA3400D05D2D /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3840B2E2B9BBA3400D05D2D /* Board.swift */; };
+		F3840B312B9BBA6C00D05D2D /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3840B302B9BBA6C00D05D2D /* Tile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		F33453732B924A2600EA4F6F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F33453752B924A5400EA4F6F /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		F33453772B92630F00EA4F6F /* TreasureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureItem.swift; sourceTree = "<group>"; };
+		F3840B2E2B9BBA3400D05D2D /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		F3840B302B9BBA6C00D05D2D /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 		F33453372B9248AA00EA4F6F = {
 			isa = PBXGroup;
 			children = (
+				F3840B2E2B9BBA3400D05D2D /* Board.swift */,
+				F3840B302B9BBA6C00D05D2D /* Tile.swift */,
 				F33453422B9248AA00EA4F6F /* Treasure_Hunting */,
 				F33453532B9248AD00EA4F6F /* Treasure_HuntingTests */,
 				F334535D2B9248AD00EA4F6F /* Treasure_HuntingUITests */,
@@ -268,6 +274,8 @@
 			files = (
 				F33453782B92630F00EA4F6F /* TreasureItem.swift in Sources */,
 				F33453722B924A0D00EA4F6F /* MainView.swift in Sources */,
+				F3840B2F2B9BBA3400D05D2D /* Board.swift in Sources */,
+				F3840B312B9BBA6C00D05D2D /* Tile.swift in Sources */,
 				F33453742B924A2600EA4F6F /* SettingsView.swift in Sources */,
 				F33453762B924A5400EA4F6F /* GameView.swift in Sources */,
 				F33453442B9248AA00EA4F6F /* Treasure_HuntingApp.swift in Sources */,
