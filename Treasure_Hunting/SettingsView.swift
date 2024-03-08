@@ -11,11 +11,24 @@ import SwiftData
 
 struct RowView: View {
     @Bindable var treasureItem: TreasureItem
-    
+    @State private var title: String
+
+    init(treasureItem: TreasureItem) {
+        _treasureItem = Bindable(treasureItem)
+        _title = State(initialValue: treasureItem.title)
+    }
+
     var body: some View {
         HStack(spacing: 10) {
-            TextField("Test", text: $treasureItem.title)
-                .font(.headline)
+            TextField("Test", text:
+                Binding(
+                    get: { title },
+                    set: { newValue in
+                        title = newValue
+                        treasureItem.title = newValue
+                    }
+                )
+            )
             
             Spacer()
             
@@ -23,10 +36,10 @@ struct RowView: View {
                 .font(.body)
                 .foregroundColor(.primary)
             
-            
-            Stepper("",
-                onIncrement: {treasureItem.count += 1},
-                onDecrement: {treasureItem.count -= 1}
+            Stepper(
+                "",
+                onIncrement: { treasureItem.count += 1 },
+                onDecrement: { treasureItem.count -= 1 }
             )
         }
         .padding()
@@ -53,7 +66,6 @@ struct SettingsView: View {
                     EditButton()
                     Button(
                         action: {
-                            print("WHYYYYY")
                             let newTreasureItem = TreasureItem(title: "TEST", count: 3)
                             modelContext.insert(newTreasureItem)
                         },
