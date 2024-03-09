@@ -5,7 +5,7 @@ import Foundation
 /// Treasure Items with the same name are placed adjacent to eachother.
 @Observable class Board {
     /// The size of the game board.
-    private let boardSize = 6
+    public let boardSize = 6
     
     /// A 2D array representing the tiles on the game board.
     private var tiles: [[Tile]]

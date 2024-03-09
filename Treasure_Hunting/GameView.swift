@@ -1,35 +1,5 @@
-//
-//  GameView.swift
-//  Treasure_Hunting
-//
-//  Created by ICS 224 on 2024-03-01.
-//
-
 import SwiftUI
 import SwiftData
-
-func systemImageName(for itemName: String) -> String {
-    // Map your item names to system image names dynamically
-    let systemImageName = UIImage(systemName: itemName)?.isSymbolImage ?? false ? itemName : "questionmark"
-    return systemImageName
-}
-
-struct TileView: View {
-    var title: String
-    @State private var revealed = false
-    
-    var body: some View {
-        Button(action: { revealed = true }) {
-            if revealed {
-                Image(systemName: systemImageName(for: title))
-            } else {
-                Image(systemName: "circle")
-            }
-        }
-        .frame(width: 30, height: 30)
-        .border(Color.black)
-    }
-}
 
 struct GameView: View {
     @Query private var treasureItems: [TreasureItem]
@@ -48,7 +18,7 @@ struct GameView: View {
                     GridRow {
                         ForEach(0..<board.boardSize, id: \.self) { col in
                             let itemName = board[row, col]?.lowercased() ?? ""
-                            TileView(title: itemName)
+                            TileView(treasureItemTitle: itemName)
                         }
                     }
                 }
@@ -58,12 +28,6 @@ struct GameView: View {
         .onAppear {
             board.populateBoard(treasureItems: treasureItems)
         }
-    }
-    
-    private func systemImageName(for itemName: String) -> String {
-        // Map your item names to system image names dynamically
-        let systemImageName = UIImage(systemName: itemName)?.isSymbolImage ?? false ? itemName : "questionmark"
-        return systemImageName
     }
 }
 
