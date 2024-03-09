@@ -1,15 +1,14 @@
-//
-//  Tile.swift
-//  Treasure_Hunting
-//
-//  Created by ICS 224 on 2024-03-08.
-//
-
 import Foundation
 
+/// A class representing a tile on the game board in a Treasure Hunting Game.
+///
+/// Each tile can contain a treasure item, and this class provides a mechanism to manage the item on the tile.
 @Observable class Tile {
+    /// The name of the treasure item on the tile. An empty string indicates no treasure item.
     var item: String
     
+    /// Initializes a new instance of the 'Tile' class.
+    /// - Parameter item: The initial treasure item on the tile. Defaults to an empty string.
     init(item: String?) {
         self.item = item ?? ""
     }
