@@ -5,13 +5,13 @@ import Foundation
 /// Treasure Items with the same name are placed adjacent to eachother.
 @Observable class Board {
     /// The size of the game board.
-    let boardSize = 6
+    private let boardSize = 6
     
     /// A 2D array representing the tiles on the game board.
-    var tiles: [[Tile]]
+    private var tiles: [[Tile]]
     
     /// A dictionary storing the groups of treasure items on the board.
-    var treasureItemGroups: [String: [(row: Int, column: Int)]]
+    private var treasureItemGroups: [String: [(row: Int, column: Int)]]
     
     /// Initializes a new instance of the 'Board' Class
     /// The board starts out empty with no treasure items.
