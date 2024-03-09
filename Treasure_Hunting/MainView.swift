@@ -1,15 +1,9 @@
-//
-//  MainView.swift
-//  Treasure_Hunting
-//
-//  Created by ICS 224 on 2024-03-01.
-//
-
 import SwiftUI
 import SwiftData
 
+/// The main view of the Treasure Hunting app
+/// Displays tabs to switch betweent the Game View and the Settings View
 struct MainView: View {
-    
     var body: some View {
         TabView {
             GameView()
