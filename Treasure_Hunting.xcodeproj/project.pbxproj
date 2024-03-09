@@ -86,8 +86,6 @@
 		F33453372B9248AA00EA4F6F = {
 			isa = PBXGroup;
 			children = (
-				F3840B2E2B9BBA3400D05D2D /* Board.swift */,
-				F3840B302B9BBA6C00D05D2D /* Tile.swift */,
 				F33453422B9248AA00EA4F6F /* Treasure_Hunting */,
 				F33453532B9248AD00EA4F6F /* Treasure_HuntingTests */,
 				F334535D2B9248AD00EA4F6F /* Treasure_HuntingUITests */,
@@ -108,10 +106,10 @@
 		F33453422B9248AA00EA4F6F /* Treasure_Hunting */ = {
 			isa = PBXGroup;
 			children = (
+				F3EEC6BD2B9CEC90001872EC /* Classes */,
 				F33453432B9248AA00EA4F6F /* Treasure_HuntingApp.swift */,
 				F33453712B924A0D00EA4F6F /* MainView.swift */,
 				F33453732B924A2600EA4F6F /* SettingsView.swift */,
-				F33453772B92630F00EA4F6F /* TreasureItem.swift */,
 				F33453752B924A5400EA4F6F /* GameView.swift */,
 				F3EEC6BB2B9CE7AB001872EC /* TileView.swift */,
 				F33453472B9248AC00EA4F6F /* Assets.xcassets */,
@@ -143,6 +141,16 @@
 				F33453602B9248AD00EA4F6F /* Treasure_HuntingUITestsLaunchTests.swift */,
 			);
 			path = Treasure_HuntingUITests;
+			sourceTree = "<group>";
+		};
+		F3EEC6BD2B9CEC90001872EC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F33453772B92630F00EA4F6F /* TreasureItem.swift */,
+				F3840B2E2B9BBA3400D05D2D /* Board.swift */,
+				F3840B302B9BBA6C00D05D2D /* Tile.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
