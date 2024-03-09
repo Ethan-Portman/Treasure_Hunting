@@ -1,9 +1,15 @@
 import SwiftUI
 
+let circleImage: Image = Image(systemName: "circle")
+let questionMarkImage: Image = Image(systemName: "questionmark")
+
+
 /// A SwiftUI view representing a tile on a game board in a treasure hunting game.
 struct TileView: View {
     /// The name of the treasure item on the tile.
     var treasureItemTitle: String
+    
+    var onTileRevealed: () -> Void
     
     /// The state that tracks whether the tile is revealed or not.
     @State private var showTreasureItem = false
@@ -11,12 +17,19 @@ struct TileView: View {
     /// Displays the SF Image treasure item or a circle if showTreasureItem is true.
     /// Displays a questionmark if showTreasureItem is false
     var body: some View {
-        Button(action: { showTreasureItem = true }) {
-            if showTreasureItem {
-                Image(systemName: systemImageName(for: treasureItemTitle))
-            } else {
-                Image(systemName: "questionmark")
-            }
+        Button(action: { 
+            showTreasureItem = true
+            onTileRevealed()
+        }) {
+                if showTreasureItem {
+                    if treasureItemTitle != "" {
+                        Image(systemName: systemImageName(for: treasureItemTitle))
+                    } else {
+                        circleImage
+                    }
+                } else {
+                    questionMarkImage
+                }
         }
         .frame(width: 30, height: 30)
     }
@@ -32,5 +45,8 @@ func systemImageName(for itemName: String) -> String {
 }
 
 #Preview {
-    TileView(treasureItemTitle: "hare")
+    TileView(treasureItemTitle: "hare") {
+        // Closure to increment numAttempts when a tile is revealed
+        var x = 10
+    }
 }
