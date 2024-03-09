@@ -7,10 +7,7 @@ struct GameView: View {
     
     @State private var board = Board()
     @State private var numAttempts = 0
-    
-    private var totalTreasures: Int {
-        treasureItems.reduce(0) { $0 + $1.count }
-    }
+    @State private var treasuresRemaining = 0
     
     var body: some View {
         VStack {
@@ -21,7 +18,9 @@ struct GameView: View {
                             let itemName = board[row, col]?.lowercased() ?? ""
                             TileView(treasureItemTitle: itemName) {
                                 numAttempts += 1
-                                print(numAttempts)
+                                if itemName != "" {
+                                    treasuresRemaining -= 1
+                                }
                             }
                         }
                     }
@@ -29,10 +28,15 @@ struct GameView: View {
             }
             .padding()
             Text("Attempts: \(numAttempts)")
-            Text("Total Remaining: \(totalTreasures)")
+            if treasuresRemaining > 0 {
+                Text("Total Remaining: \(treasuresRemaining)")
+            } else {
+                Text("Game Over!")
+            }
         }
         .onAppear {
             board.populateBoard(treasureItems: treasureItems)
+            treasuresRemaining = treasureItems.reduce(0) { $0 + $1.count }
         }
     }
 }

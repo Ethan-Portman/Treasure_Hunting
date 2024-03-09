@@ -18,8 +18,10 @@ struct TileView: View {
     /// Displays a questionmark if showTreasureItem is false
     var body: some View {
         Button(action: { 
-            showTreasureItem = true
-            onTileRevealed()
+            if !showTreasureItem {
+                showTreasureItem = true
+                onTileRevealed()
+            }
         }) {
                 if showTreasureItem {
                     if treasureItemTitle != "" {
