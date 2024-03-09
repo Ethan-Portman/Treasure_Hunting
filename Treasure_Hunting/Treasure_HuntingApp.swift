@@ -1,22 +1,15 @@
-//
-//  Treasure_HuntingApp.swift
-//  Treasure_Hunting
-//
-//  Created by ICS 224 on 2024-03-01.
-//
-
 import SwiftUI
 import SwiftData
 
+/// The main entry point for the Treasure Hunting app.
 @main
 struct Treasure_HuntingApp: App {
-
+    /// The body of the app, defining the main scene.
     var body: some Scene {
         WindowGroup {
-            // Pass modelContext to MainView
             MainView()
         }
-        // Register the model container for TreasureItem
+        // Register the model container for TreasureItem to be used in the App
         .modelContainer(for: TreasureItem.self)
     }
 }
