@@ -1,8 +1,8 @@
 import SwiftUI
 import os.log
 
-/// A SwiftUI view representing a row for a treasure item in the settings.
-/// In this view the treasure item title and count can be modified
+/// A SwiftUI view representing a row for a treasure item in the SettingsView.
+/// Users can modify the treasure item title and count in this view.
 struct SettingsRowView: View {
     /// The treasure item associated with this row.
     @Bindable var treasureItem: TreasureItem
@@ -14,7 +14,7 @@ struct SettingsRowView: View {
     var body: some View {
         HStack(spacing: 10) {
             // TextField for editing the title of the treasure item.
-            TextField("", text: $treasureItem.title)
+            TextField("Enter Title", text: $treasureItem.title)
             Spacer()
             
             // Display the count of the treasure item.
@@ -23,27 +23,30 @@ struct SettingsRowView: View {
             // Stepper for adjusting the count of the treasure item.
             Stepper(
                 "",
-                onIncrement: {
-                    if totalNumItems < Board.maxTreasureItems  {
-                        treasureItem.count += 1
-                        totalNumItems += 1
-                    } else {
-                        logger.log("Cannot increment further. Maximum items reached.")
-                    }
-                },
-                onDecrement: {
-                    if treasureItem.count > 1 {
-                        treasureItem.count -= 1
-                        totalNumItems -= 1
-                    } else {
-                        logger.log("Cannot decrement further. Minimum items reached.")
-                    }
-                }
+                onIncrement: incrementItemCount,
+                onDecrement: decrementItemCount
             )
         }
         .padding()
-        .onDisappear {
-            totalNumItems -= treasureItem.count
+    }
+    
+    /// Increment the count of the treasure item and update the total count.
+    private func incrementItemCount() {
+        if totalNumItems < Board.maxTreasureItems {
+            treasureItem.count += 1
+            totalNumItems += 1
+        } else {
+            logger.log("Cannot increment further. Maximum items reached.")
+        }
+    }
+    
+    /// Decrement the count of the treasure item and update the total count.
+    private func decrementItemCount() {
+        if treasureItem.count > 1 {
+            treasureItem.count -= 1
+            totalNumItems -= 1
+        } else {
+            logger.log("Cannot decrement further. Minimum items reached.")
         }
     }
 }

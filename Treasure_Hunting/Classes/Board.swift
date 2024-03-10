@@ -67,13 +67,16 @@ import os.log
     /// Treasure items are placed randomly on the board. Treasure items with the same name are placed adjacent to eachother.
     /// - Parameter treasureItems: An array of treasure items to be placed onto the board.
     public func populateBoard(treasureItems: [TreasureItem]) {
+        let maxAttempts = 20
         let totalItems = treasureItems.reduce(0) { $0 + $1.count }
         var successfullyPlacedItems = 0
+        var attempts = 0
 
-        while (successfullyPlacedItems != totalItems) {
+        while (successfullyPlacedItems != totalItems && attempts < maxAttempts) {
             logger.log("Attempting to Build Board")
             resetBoard()
             successfullyPlacedItems = placeItemsOnBoard(treasureItems: treasureItems)
+            attempts += 1
         }
         logger.log("Board Successfully Built")
     }
