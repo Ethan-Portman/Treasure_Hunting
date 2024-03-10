@@ -1,4 +1,5 @@
 import Foundation
+import os.log
 
 /// A class representing a game board for a Treasure Hunting Game.
 /// The Board is a 2D Array of type Tile and is responsible for managing the placement of treasure items.
@@ -6,13 +7,18 @@ import Foundation
 @Observable class Board {
     /// The size of the game board. Game board is a square with this length.
     static let boardSize = 6
+    
     /// The maximum number of treassure item groups the board can hold.
     static let maxTreasureItemGroups = 5
+    
     /// The maximum number of treasure items the board can hold.
     static let maxTreasureItems = Board.boardSize * Board.boardSize - 1
     
     /// A 2D array representing the tiles on the game board. Tiles are used to hold treasures.
     private var tiles: [[Tile]]
+    
+    /// The logger instance for logging messages.
+    private let logger = Logger()
     
     /// A dictionary storing the groups of treasure items on the board.
     /// Key is the name of the treasure, value is an array of tile coordinates with that treasure name.
@@ -65,9 +71,11 @@ import Foundation
         var successfullyPlacedItems = 0
 
         while (successfullyPlacedItems != totalItems) {
+            logger.log("Attempting to Build Board")
             resetBoard()
             successfullyPlacedItems = placeItemsOnBoard(treasureItems: treasureItems)
         }
+        logger.log("Board Successfully Built")
     }
     
     /// Resets the board by clearing all tiles and item groups
@@ -80,8 +88,6 @@ import Foundation
         treasureItemGroups = [String: [(row: Int, column: Int)]]()
     }
 
-
-    
     /// Places treasure items on the board.
     /// Treasure items with the same name are grouped together so they can be placed adjacently on the board.
     /// - Parameter treasureItems: An array of treasure items to be placed on the board.
