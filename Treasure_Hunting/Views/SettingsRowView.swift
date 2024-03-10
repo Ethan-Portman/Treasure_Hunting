@@ -42,6 +42,9 @@ struct SettingsRowView: View {
             )
         }
         .padding()
+        .onDisappear {
+            totalNumItems -= treasureItem.count
+        }
     }
 }
 

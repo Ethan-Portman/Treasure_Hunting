@@ -7,10 +7,7 @@ struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     private let logger = Logger()
     
-    private var numItemGroups: Int {
-        treasureItems.reduce(0) { $0 + ($1.title.isEmpty ? 0 : 1) }
-    }
-    
+    @State private var numItemGroups: Int = 0
     @State private var totalNumItems: Int = 0
     
     var body: some View {
@@ -30,7 +27,7 @@ struct SettingsView: View {
                     Button(
                         action: {
                             if numItemGroups < Board.maxTreasureItemGroups && totalNumItems < Board.maxTreasureItems {
-                                let newTreasureItem = TreasureItem(title: "TEST", count: 3)
+                                let newTreasureItem = TreasureItem()
                                 modelContext.insert(newTreasureItem)
                             }
                             else {
@@ -42,8 +39,9 @@ struct SettingsView: View {
                 }
             }
         }
-        .onAppear {
-            totalNumItems = treasureItems.reduce(0) { $0 + $1.count }
+        .onChange(of: treasureItems, initial: true) { oldTreasureItems, newTreasureItems in
+            totalNumItems = newTreasureItems.reduce(0) { $0 + $1.count }
+            numItemGroups = newTreasureItems.reduce(0) { $0 + ($1.title.isEmpty ? 0 : 1) }
         }
     }
     
