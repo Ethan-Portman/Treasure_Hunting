@@ -17,7 +17,7 @@ struct SettingsView: View {
         NavigationView {
             List {
                 ForEach(treasureItems, id: \.id) { item in
-                    SettingsRowView(treasureItem: item)
+                    SettingsRowView(treasureItem: item, totalNumItems: $totalNumItems)
                 }
                 .onDelete { indexSet in
                     handleDeletion(at: indexSet)
@@ -41,6 +41,9 @@ struct SettingsView: View {
                     )
                 }
             }
+        }
+        .onAppear {
+            totalNumItems = treasureItems.reduce(0) { $0 + $1.count }
         }
     }
     

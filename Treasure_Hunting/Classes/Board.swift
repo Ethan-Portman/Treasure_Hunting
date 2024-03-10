@@ -98,11 +98,13 @@ import Foundation
             }
             // Place the rest of the items within the treasure group on the board.
             // Items are placed so that they are adjacent to an item in the same group.
-            for _ in 2...treasureItem.count {
-                if let adjacentCell = findAdjacentEmptyCell(itemGroup: treasureItemGroups[treasureItem.title] ?? []) {
-                    self[adjacentCell.row, adjacentCell.column] = treasureItem.title
-                    successfullyPlacedItems += 1
-                    treasureItemGroups[treasureItem.title, default: []].append(adjacentCell)
+            if treasureItem.count > 1 {
+                for _ in 2...treasureItem.count {
+                    if let adjacentCell = findAdjacentEmptyCell(itemGroup: treasureItemGroups[treasureItem.title] ?? []) {
+                        self[adjacentCell.row, adjacentCell.column] = treasureItem.title
+                        successfullyPlacedItems += 1
+                        treasureItemGroups[treasureItem.title, default: []].append(adjacentCell)
+                    }
                 }
             }
         }
