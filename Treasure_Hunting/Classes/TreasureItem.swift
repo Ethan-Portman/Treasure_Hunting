@@ -3,7 +3,7 @@ import SwiftData
 import UIKit
 
 /// A model representing a treasure item in a treasure hunting game.
-/// Conforms to the Identifiable protocol for unique identification.
+/// A treasure item contains a title and a count
 @Model class TreasureItem: Identifiable {
     /// The unique identifier for the treasure item.
     let id = UUID()
