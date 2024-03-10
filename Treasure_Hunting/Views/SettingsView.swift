@@ -2,12 +2,22 @@ import SwiftUI
 import SwiftData
 import os.log
 
+/// A SwiftUI view for managing and editing treasure items.
+/// Displays a list of treasure items with the ability to add, edit, and delete items.
 struct SettingsView: View {
+    /// Fetches an array of treasure items using SwiftData's Query.
     @Query private var treasureItems: [TreasureItem]
+    
+    /// The modelContext for interacting with the treasureItems
     @Environment(\.modelContext) private var modelContext
+    
+    /// The logger instance for logging messages.
     private let logger = Logger()
     
+    /// The number of non-empty item groups.
     @State private var numItemGroups: Int = 0
+    
+    /// The total count of all treasure items.
     @State private var totalNumItems: Int = 0
     
     var body: some View {
@@ -45,6 +55,7 @@ struct SettingsView: View {
         }
     }
     
+    /// Adds a new treasure item to the data model if limits are not exceeded.
     private func handleDeletion(at indices: IndexSet) {
         indices.forEach { index in
             let itemToDelete = treasureItems[index]
