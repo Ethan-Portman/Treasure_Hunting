@@ -105,7 +105,6 @@ import Foundation
         return successfullyPlacedItems
     }
     
-    
     /// Finds the coordinates of an empty cell on the board.
     /// A cell is considered empty if it does not contain any treasure.
     /// - Returns: A tuple containing the row and column indices of an ampty cell.
@@ -120,7 +119,6 @@ import Foundation
             }
         }
     }
-    
     
     /// Finds the coordinates of an adjacent empty cell based on a given item group.
     /// Searches for available spaces adjacent to the cells in the item group.
