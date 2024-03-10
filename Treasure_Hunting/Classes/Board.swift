@@ -4,17 +4,18 @@ import Foundation
 /// The Board is a 2D Array of type Tile and is responsible for managing the placement of treasure items.
 /// Treasure Items with the same name are placed adjacent to eachother.
 @Observable class Board {
-    /// The size of the game board.
+    /// The size of the game board. Game board is a square with this length.
     public let boardSize = 6
     
-    /// A 2D array representing the tiles on the game board.
+    /// A 2D array representing the tiles on the game board. Tiles are used to hold treasures.
     private var tiles: [[Tile]]
     
     /// A dictionary storing the groups of treasure items on the board.
+    /// Key is the name of the treasure, value is an array of tile coordinates with that treasure name.
     private var treasureItemGroups: [String: [(row: Int, column: Int)]]
     
     /// Initializes a new instance of the 'Board' Class
-    /// The board starts out empty with no treasure items.
+    /// The board starts out as an empty grid of tiles with no treasure items.
     init() {
         tiles = [[Tile]]()
         treasureItemGroups = [String: [(row: Int, column: Int)]]()
@@ -29,29 +30,31 @@ import Foundation
     }
     
     /// Gets or sets the treasure item at the specified row and column on the board.
-    /// - Parameter row: The row of the board.
-    /// - Parameter col: The column of the board
+    /// - Parameter row: The row index of the board.
+    /// - Parameter col: The column index of the board
     /// - Returns: The name of the treasure item at the specified location, or nil if out of bounds
     subscript(row: Int, col: Int) -> String? {
+        // Get the treasure item at a specific coordinate on the board.
         get {
             guard (0..<boardSize).contains(row), (0..<boardSize).contains(col) else {
                 return nil
             }
             return tiles[row][col].item
         }
+        // Set the treasure item at a specific coordinate on the board.
         set {
-            guard (0..<boardSize).contains(row), (0..<boardSize).contains(col) else {
+            guard (0..<boardSize).contains(row), (0..<boardSize).contains(col), let newValue = newValue else {
                 return
             }
-            tiles[row][col].item = newValue ?? ""
-            
-            if let newValue = newValue {
-                treasureItemGroups[newValue, default: []].append((row, col))
-            }
+            // Set the treasure item at the specified coordinate.
+            tiles[row][col].item = newValue
+            // Update the treasure item groups dictionary with the new coordinate.
+            treasureItemGroups[newValue, default: []].append((row, col))
         }
     }
     
     /// Populates the board with treasure items.
+    /// Treasure items are placed randomly on the board. Treasure items with the same name are placed adjacent to eachother.
     /// - Parameter treasureItems: An array of treasure items to be placed onto the board.
     public func populateBoard(treasureItems: [TreasureItem]) {
         let totalItems = treasureItems.reduce(0) { $0 + $1.count }
@@ -83,12 +86,14 @@ import Foundation
         var successfullyPlacedItems = 0
         
         for treasureItem in treasureItems {
+            // Place the first treasure item of a group randomly on the board.
             if let cell = findEmptyCell() {
                 self[cell.row, cell.column] = treasureItem.title
                 successfullyPlacedItems += 1
                 treasureItemGroups[treasureItem.title, default: []].append(cell)
             }
-            
+            // Place the rest of the items within the treasure group on the board.
+            // Items are placed so that they are adjacent to an item in the same group.
             for _ in 2...treasureItem.count {
                 if let adjacentCell = findAdjacentEmptyCell(itemGroup: treasureItemGroups[treasureItem.title] ?? []) {
                     self[adjacentCell.row, adjacentCell.column] = treasureItem.title
@@ -118,13 +123,17 @@ import Foundation
     
     
     /// Finds the coordinates of an adjacent empty cell based on a given item group.
-    /// Searches for free spaces adjacent to the cells in the item group.
+    /// Searches for available spaces adjacent to the cells in the item group.
     /// - Parameter itemGroup: The item group for which an adjacent empty cell is sought.
     /// - Returns: A tuple containing the row and column indices of an adjacent empty cell, or nil if no adjacent cells found
     private func findAdjacentEmptyCell(itemGroup: [(row: Int, column: Int)]) -> (row: Int, column: Int)? {
+        // Define possible directions to explore for adjacent empty cells.
         let directions: [(Int, Int)] = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        
+        // Randomize the order of directions to add unpredictability to the search.
         let shuffledDirections = directions.shuffled()
 
+        // Iterate through shuffled directions and then through item group coordinates to find an adjacent empty cell.
         for direction in shuffledDirections {
             for cell in itemGroup {
                 let newRow = cell.row + direction.0
