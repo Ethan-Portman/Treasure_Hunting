@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3076D432B9E225000E41B5B /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3076D422B9E225000E41B5B /* SettingsRowView.swift */; };
 		F33453442B9248AA00EA4F6F /* Treasure_HuntingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33453432B9248AA00EA4F6F /* Treasure_HuntingApp.swift */; };
 		F33453482B9248AC00EA4F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F33453472B9248AC00EA4F6F /* Assets.xcassets */; };
 		F334534B2B9248AC00EA4F6F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F334534A2B9248AC00EA4F6F /* Preview Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F3076D422B9E225000E41B5B /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		F33453402B9248AA00EA4F6F /* Treasure_Hunting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Treasure_Hunting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33453432B9248AA00EA4F6F /* Treasure_HuntingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treasure_HuntingApp.swift; sourceTree = "<group>"; };
 		F33453472B9248AC00EA4F6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				F3EEC6BB2B9CE7AB001872EC /* TileView.swift */,
 				F33453752B924A5400EA4F6F /* GameView.swift */,
 				F33453732B924A2600EA4F6F /* SettingsView.swift */,
+				F3076D422B9E225000E41B5B /* SettingsRowView.swift */,
 				F33453712B924A0D00EA4F6F /* MainView.swift */,
 			);
 			path = Views;
@@ -299,6 +302,7 @@
 				F33453742B924A2600EA4F6F /* SettingsView.swift in Sources */,
 				F33453762B924A5400EA4F6F /* GameView.swift in Sources */,
 				F33453442B9248AA00EA4F6F /* Treasure_HuntingApp.swift in Sources */,
+				F3076D432B9E225000E41B5B /* SettingsRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

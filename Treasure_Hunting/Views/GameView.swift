@@ -24,9 +24,9 @@ struct GameView: View {
         VStack {
             // Display the game board as a grid of clickable tiles.
             Grid {
-                ForEach(0..<board.boardSize, id: \.self) { row in
+                ForEach(0..<Board.boardSize, id: \.self) { row in
                     GridRow {
-                        ForEach(0..<board.boardSize, id: \.self) { col in
+                        ForEach(0..<Board.boardSize, id: \.self) { col in
                             let itemName = board[row, col]?.lowercased() ?? ""
                             TileView(treasureItemTitle: itemName) {
                                 numAttempts += 1

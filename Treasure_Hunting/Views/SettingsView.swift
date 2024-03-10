@@ -1,50 +1,5 @@
-//
-//  SettingsView.swift
-//  Treasure_Hunting
-//
-//  Created by ICS 224 on 2024-03-01.
-//
-
 import SwiftUI
 import SwiftData
-
-
-struct RowView: View {
-    @Bindable var treasureItem: TreasureItem
-    @State private var title: String
-
-    init(treasureItem: TreasureItem) {
-        _treasureItem = Bindable(treasureItem)
-        _title = State(initialValue: treasureItem.title)
-    }
-
-    var body: some View {
-        HStack(spacing: 10) {
-            TextField("Test", text:
-                Binding(
-                    get: { title },
-                    set: { newValue in
-                        title = newValue
-                        treasureItem.title = newValue
-                    }
-                )
-            )
-            
-            Spacer()
-            
-            Text("\(treasureItem.count)")
-                .font(.body)
-                .foregroundColor(.primary)
-            
-            Stepper(
-                "",
-                onIncrement: { treasureItem.count += 1 },
-                onDecrement: { treasureItem.count -= 1 }
-            )
-        }
-        .padding()
-    }
-}
 
 struct SettingsView: View {
     @Query private var treasureItems: [TreasureItem]
@@ -54,7 +9,7 @@ struct SettingsView: View {
         NavigationView {
             List {
                 ForEach(treasureItems, id: \.id) { item in
-                    RowView(treasureItem: item)
+                    SettingsRowView(treasureItem: item)
                 }
                 .onDelete { indexSet in
                     handleDeletion(at: indexSet)
@@ -90,5 +45,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    MainView()
 }

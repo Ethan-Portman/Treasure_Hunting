@@ -17,7 +17,7 @@ import UIKit
     ///  Initializes a new instance of the `TreasureItem` class with the specified title and count.
     /// - Parameter title: The title or name of the treasure item.
     /// - Parameter count:  The count or quantity of the treasure item.
-    init(title: String, count: Int) {
+    init(title: String = "circle", count: Int = 1) {
         self.title = title
         self.count = count
     }

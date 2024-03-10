@@ -1,9 +1,9 @@
 import SwiftUI
 
 /// Predefined Image symbol for an empty circle.
-let circleImage: Image = Image(systemName: "circle")
+private let circleImage: Image = Image(systemName: "circle")
 /// Predefined Image symbol for a question mark.
-let questionMarkImage: Image = Image(systemName: "questionmark")
+private let questionMarkImage: Image = Image(systemName: "questionmark")
 
 
 /// A SwiftUI view representing a tile on a game board in a treasure hunting game.
@@ -39,7 +39,7 @@ struct TileView: View {
 /// Gets the SF image name from a string,. If no image name is found, uses the xmark symbol.
 /// - Parameter itemName: The name of the SF Image symbol to find.
 /// - Returns: The name of a valid SF image symbol.
-func systemImageName(for itemName: String) -> String {
+private func systemImageName(for itemName: String) -> String {
     let systemImageName = UIImage(systemName: itemName)?.isSymbolImage ?? false ? itemName : "xmark"
     return systemImageName
 }

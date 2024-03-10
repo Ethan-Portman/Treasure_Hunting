@@ -5,7 +5,11 @@ import Foundation
 /// Treasure Items with the same name are placed adjacent to eachother.
 @Observable class Board {
     /// The size of the game board. Game board is a square with this length.
-    public let boardSize = 6
+    static let boardSize = 6
+    /// The maximum number of treassure item groups the board can hold.
+    static let maxTreasureItemGroups = 5
+    /// The maximum number of treasure items the board can hold.
+    static let maxTreasureItems = Board.boardSize * Board.boardSize - 1
     
     /// A 2D array representing the tiles on the game board. Tiles are used to hold treasures.
     private var tiles: [[Tile]]
@@ -20,9 +24,9 @@ import Foundation
         tiles = [[Tile]]()
         treasureItemGroups = [String: [(row: Int, column: Int)]]()
 
-        for _ in 1...boardSize {
+        for _ in 1...Board.boardSize {
             var tileRow = [Tile]()
-            for _ in 1...boardSize {
+            for _ in 1...Board.boardSize {
                 tileRow.append(Tile(item: nil))
             }
             tiles.append(tileRow)
@@ -36,14 +40,14 @@ import Foundation
     subscript(row: Int, col: Int) -> String? {
         // Get the treasure item at a specific coordinate on the board.
         get {
-            guard (0..<boardSize).contains(row), (0..<boardSize).contains(col) else {
+            guard (0..<Board.boardSize).contains(row), (0..<Board.boardSize).contains(col) else {
                 return nil
             }
             return tiles[row][col].item
         }
         // Set the treasure item at a specific coordinate on the board.
         set {
-            guard (0..<boardSize).contains(row), (0..<boardSize).contains(col), let newValue = newValue else {
+            guard (0..<Board.boardSize).contains(row), (0..<Board.boardSize).contains(col), let newValue = newValue else {
                 return
             }
             // Set the treasure item at the specified coordinate.
@@ -68,8 +72,8 @@ import Foundation
     
     /// Resets the board by clearing all tiles and item groups
     private func resetBoard() {
-        for row in 0..<boardSize {
-            for column in 0..<boardSize {
+        for row in 0..<Board.boardSize {
+            for column in 0..<Board.boardSize {
                 self[row, column] = ""
             }
         }
@@ -110,8 +114,8 @@ import Foundation
     /// - Returns: A tuple containing the row and column indices of an ampty cell.
     private func findEmptyCell() -> (row: Int, column: Int)? {
         while true {
-            let randomRow = Int.random(in: 0..<boardSize)
-            let randomColumn = Int.random(in: 0..<boardSize)
+            let randomRow = Int.random(in: 0..<Board.boardSize)
+            let randomColumn = Int.random(in: 0..<Board.boardSize)
             let randTile = tiles[randomRow][randomColumn]
 
             if randTile.item == "" {
@@ -137,7 +141,7 @@ import Foundation
                 let newRow = cell.row + direction.0
                 let newColumn = cell.column + direction.1
 
-                if (0..<boardSize).contains(newRow) && (0..<boardSize).contains(newColumn) && self[newRow, newColumn] == "" {
+                if (0..<Board.boardSize).contains(newRow) && (0..<Board.boardSize).contains(newColumn) && self[newRow, newColumn] == "" {
                     return (row: newRow, column: newColumn)
                 }
             }
