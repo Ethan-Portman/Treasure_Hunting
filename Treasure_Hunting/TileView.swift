@@ -45,8 +45,5 @@ func systemImageName(for itemName: String) -> String {
 }
 
 #Preview {
-    TileView(treasureItemTitle: "hare") {
-        // Closure to increment numAttempts when a tile is revealed
-        var x = 10
-    }
+    MainView()
 }
