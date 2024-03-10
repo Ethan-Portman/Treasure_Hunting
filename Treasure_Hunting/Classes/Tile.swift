@@ -1,8 +1,8 @@
 import Foundation
 
 /// A class representing a tile on the game board in a Treasure Hunting Game.
-///
 /// Each tile can contain a treasure item, and this class provides a mechanism to manage the item on the tile.
+/// This class is used by the 'Board' class.
 @Observable class Tile {
     /// The name of the treasure item on the tile. An empty string indicates no treasure item.
     var item: String
