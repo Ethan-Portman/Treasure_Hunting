@@ -58,7 +58,7 @@ import os.log
                 return
             }
             tiles[row][col] = newValue
-            treasureItemGroups[newValue.item, default: []].append((row, col))
+            treasureItemGroups[newValue.getItem(), default: []].append((row, col))
         }
     }
     
@@ -85,7 +85,7 @@ import os.log
         for row in 0..<Board.boardSize {
             for column in 0..<Board.boardSize {
                 if let tile = self[row, column] {
-                    tile.item = ""
+                    tile.setItem(item: "")
                     tile.setRevealed(revealed: false)
                 }
             }
@@ -103,7 +103,7 @@ import os.log
         for treasureItem in treasureItems {
             // Place the first treasure item of a group randomly on the board.
             if let cell = findEmptyCell() {
-                self[cell.row, cell.column]?.item = treasureItem.title
+                self[cell.row, cell.column]?.setItem(item: treasureItem.title)
                 successfullyPlacedItems += 1
                 treasureItemGroups[treasureItem.title, default: []].append(cell)
             }
@@ -112,7 +112,7 @@ import os.log
             if treasureItem.count > 1 {
                 for _ in 2...treasureItem.count {
                     if let adjacentCell = findAdjacentEmptyCell(itemGroup: treasureItemGroups[treasureItem.title] ?? []) {
-                        self[adjacentCell.row, adjacentCell.column]?.item = treasureItem.title
+                        self[adjacentCell.row, adjacentCell.column]?.setItem(item: treasureItem.title)
                         successfullyPlacedItems += 1
                         treasureItemGroups[treasureItem.title, default: []].append(adjacentCell)
                     }
@@ -131,7 +131,7 @@ import os.log
             let randomColumn = Int.random(in: 0..<Board.boardSize)
             let randTile = tiles[randomRow][randomColumn]
 
-            if randTile.item == "" {
+            if randTile.getItem() == "" {
                 return (row: randomRow, column: randomColumn)
             }
         }

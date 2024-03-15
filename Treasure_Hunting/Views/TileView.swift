@@ -22,13 +22,13 @@ struct TileView: View {
     /// Calls the closure `onTileRevealed` once and only once when the tile is clicked/revealed.
     var body: some View {
         Button(action: { 
-            if !tile.revealed {
+            if !tile.isRevealed() {
                 tile.setRevealed(revealed: true)
                 onTileRevealed()
             }
         }) {
-            tile.revealed
-            ? (tile.isEmpty() ? circleImage : Image(systemName: systemImageName(for: tile.item.lowercased())))
+            tile.isRevealed()
+                ? (tile.isEmpty() ? circleImage : Image(systemName: systemImageName(for: tile.getItem().lowercased())))
                 : questionMarkImage
         }
         .frame(width: 30, height: 30)
@@ -39,6 +39,7 @@ struct TileView: View {
 /// - Parameter itemName: The name of the SF Image symbol to find.
 /// - Returns: The name of a valid SF image symbol.
 private func systemImageName(for itemName: String) -> String {
+    print(itemName)
     let systemImageName = UIImage(systemName: itemName)?.isSymbolImage ?? false ? itemName : "xmark"
     return systemImageName
 }
