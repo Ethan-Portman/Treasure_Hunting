@@ -11,6 +11,7 @@ struct SettingsRowView: View {
     /// The logger instance for logging messages.
     private let logger = Logger()
     
+    /// The body of the view, defining the layout and functionality of the row.
     var body: some View {
         HStack(spacing: 10) {
             // TextField for editing the title of the treasure item.
