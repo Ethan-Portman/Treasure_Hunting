@@ -20,6 +20,8 @@ struct SettingsView: View {
     /// The total count of all treasure items.
     @State private var totalNumItems: Int = 0
     
+    /// Defines the layout of the Settings View, presenting a list of the treasure items with options for editing, deleting and adding
+    /// Counts are updated dynamically whenever treasureItems changes
     var body: some View {
         NavigationView {
             List {
@@ -49,13 +51,14 @@ struct SettingsView: View {
                 }
             }
         }
+        // Updates the counts of item groups and total items whenever treasureItems is modified
         .onChange(of: treasureItems, initial: true) { oldTreasureItems, newTreasureItems in
             totalNumItems = newTreasureItems.reduce(0) { $0 + $1.count }
             numItemGroups = newTreasureItems.reduce(0) { $0 + ($1.title.isEmpty ? 0 : 1) }
         }
     }
     
-    /// Adds a new treasure item to the data model if limits are not exceeded.
+    /// Deletes treasure items at the specified indices.
     private func handleDeletion(at indices: IndexSet) {
         indices.forEach { index in
             let itemToDelete = treasureItems[index]
