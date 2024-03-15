@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 import os.log
 
-/// The logger instance for logging messages.
+/// The logger instance for logging messages within the App.
 public let logger = Logger()
 
 /// The main entry point for the Treasure Hunting app.
@@ -13,7 +13,7 @@ struct Treasure_HuntingApp: App {
         WindowGroup {
             MainView()
         }
-        // Register the model container for TreasureItem to be used in the App
+        // Register the model container for TreasureItem to be used in the App to keep track of treasures
         .modelContainer(for: TreasureItem.self)
     }
 }

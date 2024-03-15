@@ -10,10 +10,10 @@ private let questionMarkImage: Image = Image(systemName: "questionmark")
 /// Tiles are used to hold treasure, clicking on a tile reveals the treasure.
 struct TileView: View {
     /// The state of the tile, including its treasure item and reveal status.
-    @State var tile: Tile
+    @State public var tile: Tile
     
     /// A closure called when the tile is revealed
-    var onTileRevealed: () -> Void
+    public var onTileRevealed: () -> Void
     
     /// Displays the SF Image treasure item or a circle if showTreasureItem is true.
     /// Displays a question mark if showTreasureItem is false.

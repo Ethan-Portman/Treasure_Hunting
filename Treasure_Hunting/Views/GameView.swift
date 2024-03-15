@@ -20,6 +20,8 @@ struct GameView: View {
     /// The count of treasures yet to be discovered on the board.
     @State private var treasuresRemaining = 0
     
+    @State private var previousTreasureItems: [TreasureItem]?
+    
     /// The body of the GameView, containing the game logic and UI elements fo a GameBoard
     var body: some View {
         VStack {
@@ -48,7 +50,9 @@ struct GameView: View {
             // Display the number of treasures remaining or indicate game over.
             Text(treasuresRemaining > 0 ? "Total Remaining: \(treasuresRemaining)" : "Game Over!")
         }
-        // Fires anytime the GameView is viewed
+         // Fires anytime the GameView is viewed
+         // This logic should only fire if treasureItems changes but could not figure out how to implement it
+         // So it runs anytime Game is clicked (GameView appears)
         .onAppear {
             // Populate the game board with treasure items.
             board.populateBoard(treasureItems: treasureItems)
