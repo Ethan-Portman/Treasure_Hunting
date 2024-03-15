@@ -20,6 +20,7 @@ struct GameView: View {
     /// The count of treasures yet to be discovered on the board.
     @State private var treasuresRemaining = 0
     
+    /// The body of the GameView, containing the game logic and UI elements fo a GameBoard
     var body: some View {
         VStack {
             // Display the game board as a grid of clickable tiles.
@@ -47,6 +48,7 @@ struct GameView: View {
             // Display the number of treasures remaining or indicate game over.
             Text(treasuresRemaining > 0 ? "Total Remaining: \(treasuresRemaining)" : "Game Over!")
         }
+        // Fires anytime the GameView is viewed
         .onAppear {
             // Populate the game board with treasure items.
             board.populateBoard(treasureItems: treasureItems)
@@ -54,6 +56,7 @@ struct GameView: View {
             // Initialize the count of remaining treasures.
             treasuresRemaining = treasureItems.reduce(0) { $0 + $1.count }
             
+            // Reset the number of counts
             numAttempts = 0
         }
     }
