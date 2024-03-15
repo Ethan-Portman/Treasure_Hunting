@@ -1,6 +1,5 @@
 import SwiftUI
 import SwiftData
-import os.log
 
 /// A SwiftUI view for managing and editing treasure items.
 /// Displays a list of treasure items with the ability to add, edit, and delete items.
@@ -10,9 +9,6 @@ struct SettingsView: View {
     
     /// The modelContext for interacting with the treasureItems
     @Environment(\.modelContext) private var modelContext
-    
-    /// The logger instance for logging messages.
-    private let logger = Logger()
     
     /// The number of non-empty item groups.
     @State private var numItemGroups: Int = 0

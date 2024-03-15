@@ -1,5 +1,4 @@
 import SwiftUI
-import os.log
 
 /// A SwiftUI view representing a row for a treasure item in the SettingsView.
 /// Users can modify the treasure item title and count in this view.
@@ -8,9 +7,7 @@ struct SettingsRowView: View {
     @Bindable var treasureItem: TreasureItem
     /// The binding for the total number of items.
     @Binding var totalNumItems: Int
-    /// The logger instance for logging messages.
-    private let logger = Logger()
-    
+
     /// The body of the view, defining the layout and functionality of the row.
     var body: some View {
         HStack(spacing: 10) {

@@ -1,5 +1,9 @@
 import SwiftUI
 import SwiftData
+import os.log
+
+/// The logger instance for logging messages.
+public let logger = Logger()
 
 /// The main entry point for the Treasure Hunting app.
 @main
