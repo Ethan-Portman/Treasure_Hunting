@@ -37,7 +37,6 @@ struct TileView: View {
 /// - Parameter itemName: The name of the SF Image symbol to find.
 /// - Returns: The name of a valid SF image symbol.
 private func systemImageName(for itemName: String) -> String {
-    print(itemName)
     let systemImageName = UIImage(systemName: itemName)?.isSymbolImage ?? false ? itemName : "xmark"
     return systemImageName
 }
