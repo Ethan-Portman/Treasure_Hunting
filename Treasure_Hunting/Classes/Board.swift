@@ -29,7 +29,8 @@ import os.log
     init() {
         tiles = [[Tile]]()
         treasureItemGroups = [String: [(row: Int, column: Int)]]()
-
+        
+        // Initialize the board with empty tiles
         for _ in 1...Board.boardSize {
             var tileRow = [Tile]()
             for _ in 1...Board.boardSize {
@@ -42,24 +43,22 @@ import os.log
     /// Gets or sets the treasure item at the specified row and column on the board.
     /// - Parameter row: The row index of the board.
     /// - Parameter col: The column index of the board
-    /// - Returns: The name of the treasure item at the specified location, or nil if out of bounds
-    subscript(row: Int, col: Int) -> String? {
-        // Get the treasure item at a specific coordinate on the board.
+    /// - Returns: The tile at the specified location, or nil if out of bounds.
+    subscript(row: Int, col: Int) -> Tile? {
+        // Get the tile at a specific coordinate on the board.
         get {
             guard (0..<Board.boardSize).contains(row), (0..<Board.boardSize).contains(col) else {
                 return nil
             }
-            return tiles[row][col].item
+            return tiles[row][col]
         }
-        // Set the treasure item at a specific coordinate on the board.
+        // Set the tile at a specific coordinate on the board.
         set {
             guard (0..<Board.boardSize).contains(row), (0..<Board.boardSize).contains(col), let newValue = newValue else {
                 return
             }
-            // Set the treasure item at the specified coordinate.
-            tiles[row][col].item = newValue
-            // Update the treasure item groups dictionary with the new coordinate.
-            treasureItemGroups[newValue, default: []].append((row, col))
+            tiles[row][col] = newValue
+            treasureItemGroups[newValue.item, default: []].append((row, col))
         }
     }
     
@@ -81,11 +80,14 @@ import os.log
         logger.log("Board Successfully Built")
     }
     
-    /// Resets the board by clearing all tiles and item groups
+    /// Resets the board by clearing all tiles and item groups. Also hides all of the tiles.
     private func resetBoard() {
         for row in 0..<Board.boardSize {
             for column in 0..<Board.boardSize {
-                self[row, column] = ""
+                if let tile = self[row, column] {
+                    tile.item = ""
+                    tile.setRevealed(revealed: false)
+                }
             }
         }
         treasureItemGroups = [String: [(row: Int, column: Int)]]()
@@ -101,7 +103,7 @@ import os.log
         for treasureItem in treasureItems {
             // Place the first treasure item of a group randomly on the board.
             if let cell = findEmptyCell() {
-                self[cell.row, cell.column] = treasureItem.title
+                self[cell.row, cell.column]?.item = treasureItem.title
                 successfullyPlacedItems += 1
                 treasureItemGroups[treasureItem.title, default: []].append(cell)
             }
@@ -110,7 +112,7 @@ import os.log
             if treasureItem.count > 1 {
                 for _ in 2...treasureItem.count {
                     if let adjacentCell = findAdjacentEmptyCell(itemGroup: treasureItemGroups[treasureItem.title] ?? []) {
-                        self[adjacentCell.row, adjacentCell.column] = treasureItem.title
+                        self[adjacentCell.row, adjacentCell.column]?.item = treasureItem.title
                         successfullyPlacedItems += 1
                         treasureItemGroups[treasureItem.title, default: []].append(adjacentCell)
                     }
@@ -152,7 +154,7 @@ import os.log
                 let newRow = cell.row + direction.0
                 let newColumn = cell.column + direction.1
 
-                if (0..<Board.boardSize).contains(newRow) && (0..<Board.boardSize).contains(newColumn) && self[newRow, newColumn] == "" {
+                if (0..<Board.boardSize).contains(newRow), (0..<Board.boardSize).contains(newColumn), self[newRow, newColumn]?.isEmpty() ?? false {
                     return (row: newRow, column: newColumn)
                 }
             }

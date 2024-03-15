@@ -10,26 +10,25 @@ private let questionMarkImage: Image = Image(systemName: "questionmark")
 /// Tiles are used to hold treasure, clicking on a tile reveals the treasure.
 struct TileView: View {
     /// The name of the treasure item on the tile.
-    var treasureItemTitle: String
+    @State var tile: Tile
+    //var treasureItemTitle: String
     
     /// A closure called when the tile is revealed
     var onTileRevealed: () -> Void
     
-    /// The state that tracks whether the tile is revealed or not.
-    @State private var showTreasureItem = false
     
     /// Displays the SF Image treasure item or a circle if showTreasureItem is true.
     /// Displays a question mark if showTreasureItem is false.
     /// Calls the closure `onTileRevealed` once and only once when the tile is clicked/revealed.
     var body: some View {
         Button(action: { 
-            if !showTreasureItem {
-                showTreasureItem = true
+            if !tile.revealed {
+                tile.setRevealed(revealed: true)
                 onTileRevealed()
             }
         }) {
-            showTreasureItem 
-                ? (treasureItemTitle.isEmpty ? circleImage : Image(systemName: systemImageName(for: treasureItemTitle)))
+            tile.revealed
+            ? (tile.isEmpty() ? circleImage : Image(systemName: systemImageName(for: tile.item.lowercased())))
                 : questionMarkImage
         }
         .frame(width: 30, height: 30)

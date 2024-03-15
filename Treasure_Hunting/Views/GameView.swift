@@ -27,11 +27,12 @@ struct GameView: View {
                 ForEach(0..<Board.boardSize, id: \.self) { row in
                     GridRow {
                         ForEach(0..<Board.boardSize, id: \.self) { col in
-                            let itemName = board[row, col]?.lowercased() ?? ""
-                            TileView(treasureItemTitle: itemName) {
-                                numAttempts += 1
-                                if itemName != "" {
-                                    treasuresRemaining -= 1
+                            if let tile = board[row, col] {
+                                TileView(tile: tile) {
+                                    numAttempts += 1
+                                    if !tile.isEmpty() {
+                                        treasuresRemaining -= 1
+                                    }
                                 }
                             }
                         }
@@ -52,6 +53,8 @@ struct GameView: View {
             
             // Initialize the count of remaining treasures.
             treasuresRemaining = treasureItems.reduce(0) { $0 + $1.count }
+            
+            numAttempts = 0
         }
     }
 }
