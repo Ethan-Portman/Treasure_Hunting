@@ -8,9 +8,6 @@ struct GameView: View {
     /// Query for retrieving a list of treasure items from the data store.
     @Query private var treasureItems: [TreasureItem]
     
-    /// The managed object context for interacting with the TreasureItems data store
-    @Environment(\.modelContext) private var modelContext
-    
     /// The game board, managing the arrangement of treasure items.
     @State private var board = Board()
     
@@ -19,8 +16,6 @@ struct GameView: View {
     
     /// The count of treasures yet to be discovered on the board.
     @State private var treasuresRemaining = 0
-    
-    @State private var previousTreasureItems: [TreasureItem]?
     
     /// The body of the GameView, containing the game logic and UI elements fo a GameBoard
     var body: some View {
@@ -51,8 +46,6 @@ struct GameView: View {
             Text(treasuresRemaining > 0 ? "Total Remaining: \(treasuresRemaining)" : "Game Over!")
         }
          // Fires anytime the GameView is viewed
-         // This logic should only fire if treasureItems changes but could not figure out how to implement it
-         // So it runs anytime Game is clicked (GameView appears)
         .onAppear {
             // Populate the game board with treasure items.
             board.populateBoard(treasureItems: treasureItems)
