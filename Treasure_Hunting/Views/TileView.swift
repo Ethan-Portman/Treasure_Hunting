@@ -5,7 +5,6 @@ private let circleImage: Image = Image(systemName: "circle")
 /// Predefined Image symbol for a question mark.
 private let questionMarkImage: Image = Image(systemName: "questionmark")
 
-
 /// A SwiftUI view representing a tile on a game board in a treasure hunting game.
 /// Tiles are used to hold treasure, clicking on a tile reveals the treasure.
 struct TileView: View {
